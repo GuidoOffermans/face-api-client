@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Resizer from 'react-image-file-resizer';
+import { Redirect } from 'react-router-dom';
 
 import { signUp } from '../../redux/actions/faces';
 import {
@@ -13,11 +14,12 @@ import './signup.css';
 const testImg = require('../../img/guido.jpg');
 
 const SignUp = (props) => {
-	const [ allFaces, setAllFaces ] = useState(null);
 	const [ imageURL, setImageURl ] = useState(null);
 	const [ formData, setFormData ] = useState({
 		name: ''
 	});
+	const [ loading, setLoading ] = useState(false);
+	const [ redirect, setRedirect ] = useState(false);
 
 	useEffect(() => {
 		setup();
@@ -53,6 +55,7 @@ const SignUp = (props) => {
 
 	const onSubmit = async (event) => {
 		event.preventDefault();
+		setLoading(true);
 		await loadModels();
 		console.log('url', imageURL);
 		const fullDesc = await getFullFaceDescription(imageURL);
@@ -61,38 +64,69 @@ const SignUp = (props) => {
 		setFormData({
 			name: ''
 		});
+		setLoading(false);
+		setRedirect(true);
 	};
 
-	return (
-		<div id="faceSubmit">
-			<form onSubmit={onSubmit}>
-				<input
-					type="file"
-					name="file"
-					id="file"
-					className="inputfile"
-					onChange={handleFileChange}
-					accept=".jpg, .jpeg, .png"
+	if (!loading) {
+		return (
+			<div id="faceSubmit">
+				<h2>SignUp</h2>
+				<form onSubmit={onSubmit}>
+					<input
+						type="file"
+						name="file"
+						id="file"
+						className="inputfile"
+						onChange={handleFileChange}
+						accept=".jpg, .jpeg, .png"
+					/>
+					<label for="file">
+						<p>Choose a file</p>
+					</label>
+					<input
+						className="text"
+						type="text"
+						name="name"
+						onChange={onChange}
+						value={formData.name}
+						placeholder="Name"
+					/>
+					<button>submit</button>
+				</form>
+				{redirect ? (
+					<h2>You have been added to the database :)</h2>
+				) : null}
+				{imageURL !== null ? (
+					<img
+						className="img"
+						src={imageURL}
+						alt="imageURL"
+					/>
+				) : null}
+			</div>
+		);
+	} else if (loading) {
+		return (
+			<div id="faceChecker" style={{ position: 'relative' }}>
+				<img
+					className="img"
+					src={imageURL}
+					alt="imageURL"
+					style={{
+						position: 'absolute',
+						opacity: '0.5',
+						filter: 'brightness(50%)'
+					}}
 				/>
-				<label for="file">
-					<p>Choose a file</p>
-				</label>
-				<input
-					className="text"
-					type="text"
-					name="name"
-					onChange={onChange}
-					value={formData.name}
-					placeholder="Name"
+				<div
+					className="cssload-loader"
+					style={{ position: 'absolute' }}
 				/>
-				<button>submit</button>
-			</form>
-
-			{imageURL !== null ? (
-				<img className="img" src={imageURL} alt="imageURL" />
-			) : null}
-		</div>
-	);
+				{redirect ? <Redirect to="/check" /> : null}
+			</div>
+		);
+	}
 };
 
 const mapStateToProps = (state) => {

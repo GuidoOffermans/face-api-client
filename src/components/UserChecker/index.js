@@ -14,7 +14,6 @@ import './userChecker.css';
 const loadingImg = require('../../views/load.gif');
 
 const UserChecker = (props) => {
-	const [ setupRan, setSetupRan ] = useState(false);
 	const [ detections, setDetections ] = useState(null);
 	const [ descriptors, setDescriptors ] = useState(null);
 	const [ faceMatcher, setFaceMatcher ] = useState(null);
@@ -150,6 +149,7 @@ const UserChecker = (props) => {
 		if (!loading) {
 			return (
 				<div id="faceChecker">
+					<h2>Verify</h2>
 					<form onSubmit={onSubmit}>
 						<input
 							type="file"

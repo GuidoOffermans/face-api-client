@@ -15,6 +15,11 @@
 	size: 10%;
 }
 
+#faceSubmit h2 {
+	font-size: 2rem;
+	margin-bottom: 2rem;
+}
+
 #faceSubmit .img {
 	border-radius: 1rem;
 	box-shadow: 10px 10px 30px 5px #888888;
@@ -29,6 +34,7 @@
 	font-weight: 500;
 	background: #21374f;
 	border-radius: .5rem;
+	box-shadow: 2px 2px 30px 2px #13202e;
 }
 #faceSubmit button:hover {
 	background: rgba(129, 110, 255, 1);
@@ -65,6 +71,7 @@
 	border-radius: .5rem;
 	color: #11e483;
 	background-color: #21374f;
+	box-shadow: 2px 2px 30px 2px #13202e;
 
 	margin: 0;
 }
@@ -76,7 +83,11 @@
 .inputfile + label {
 	cursor: pointer; /* "hand" cursor */
 }
-
+#faceSubmit .text {
+	height: 1.2rem;
+	width: 10rem;
+	border-radius: .5rem;
+}
 .cssload-loader {
 	width: 150px;
 	height: 150px;

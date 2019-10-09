@@ -8,13 +8,13 @@ const Header = () => {
 			<h2>FACIAL RECOGNITION APP</h2>
 			<ul>
 				<li>
-					<Link to="/photo">signUp</Link>
+					<Link to="/">Home</Link>
 				</li>
-				{/* <li>
-					<Link to="/">Video Camera</Link>
-				</li> */}
 				<li>
 					<Link to="/check">verify</Link>
+				</li>
+				<li>
+					<Link to="/photo">signUp</Link>
 				</li>
 			</ul>
 		</header>
