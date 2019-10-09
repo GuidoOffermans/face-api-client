@@ -6,6 +6,7 @@ export async function loadModels() {
 	await faceapi.loadTinyFaceDetectorModel(MODEL_URL);
 	await faceapi.loadFaceLandmarkTinyModel(MODEL_URL);
 	await faceapi.loadFaceRecognitionModel(MODEL_URL);
+	return MODEL_URL;
 }
 
 export async function getFullFaceDescription(blob, inputSize = 512) {
@@ -15,6 +16,7 @@ export async function getFullFaceDescription(blob, inputSize = 512) {
 		inputSize,
 		scoreThreshold
 	});
+
 	const useTinyModel = true;
 
 	// fetch image to api
@@ -27,4 +29,25 @@ export async function getFullFaceDescription(blob, inputSize = 512) {
 		.withFaceLandmarks(useTinyModel)
 		.withFaceDescriptors();
 	return fullDesc;
+}
+
+const maxDescriptorDistance = 0.5;
+export async function createMatcher(users) {
+	console.log('users:', users);
+	let labeledDescriptors = users.map(
+		(user) =>
+			new faceapi.LabeledFaceDescriptors(user.name, [
+				new Float32Array(user.descriptors)
+			])
+	);
+
+	console.log('labeled', labeledDescriptors);
+
+	// Create face matcher (maximum descriptor distance is 0.5)
+	let faceMatcher = new faceapi.FaceMatcher(
+		labeledDescriptors,
+		maxDescriptorDistance
+	);
+	console.log(';', faceMatcher);
+	return faceMatcher;
 }

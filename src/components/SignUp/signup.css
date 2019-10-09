@@ -1,0 +1,210 @@
+#faceSubmit {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* justify-content: center; */
+	height: 100vh;
+	width: 100vw;
+	margin-right: auto;
+	margin-left: auto;
+	/* padding: 0 auto; */
+}
+#faceSubmit .fotobox {
+	display: flex;
+	justify-content: center;
+	size: 10%;
+}
+
+#faceSubmit .img {
+	border-radius: 1rem;
+	box-shadow: 10px 10px 30px 5px #888888;
+}
+
+#faceSubmit button {
+	height: 2rem;
+	width: 4rem;
+	font-size: 1rem;
+	border: none;
+	color: #11e483;
+	font-weight: 500;
+	background: #21374f;
+	border-radius: .5rem;
+}
+#faceSubmit button:hover {
+	background: rgba(129, 110, 255, 1);
+}
+
+#faceSubmit form {
+	/* width: 100%; */
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	margin: 0 0 2rem 0;
+}
+#faceSubmit .inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#faceSubmit .text {
+	margin: 0 1rem;
+}
+
+#faceSubmit label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 2rem;
+	width: 10rem;
+	font-size: 1em;
+	border-radius: .5rem;
+	color: #11e483;
+	background-color: #21374f;
+
+	margin: 0;
+}
+
+#faceSubmit .inputfile + label:hover,
+#faceSubmit .inputfile + label:hover {
+	background: rgba(129, 110, 255, 1);
+}
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+
+.cssload-loader {
+	width: 150px;
+	height: 150px;
+	line-height: 244px;
+	margin: 81px auto;
+	position: relative;
+	box-sizing: border-box;
+	text-align: center;
+	z-index: 0;
+	text-transform: uppercase;
+	-o-text-transform: uppercase;
+	-ms-text-transform: uppercase;
+	-webkit-text-transform: uppercase;
+	-moz-text-transform: uppercase;
+}
+
+.cssload-loader:before,
+.cssload-loader:after {
+	opacity: 0;
+	box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	content: "\0020";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 163px;
+	border: 8px solid rgb(17, 228, 131);
+	box-shadow: 0 0 81px rgba(33, 55, 79, 0.75),
+		inset 0 0 81px rgba(33, 55, 79, 0.79);
+	-o-box-shadow: 0 0 81px rgba(33, 55, 79, 0.75),
+		inset 0 0 81px rgba(33, 55, 79, 0.79);
+	-ms-box-shadow: 0 0 81px rgba(33, 55, 79, 0.75),
+		inset 0 0 81px rgba(33, 55, 79, 0.79);
+	-webkit-box-shadow: 0 0 81px rgba(33, 55, 79, 0.75),
+		inset 0 0 81px rgba(33, 55, 79, 0.79);
+	-moz-box-shadow: 0 0 81px rgba(33, 55, 79, 0.75),
+		inset 0 0 81px rgba(33, 55, 79, 0.79);
+}
+
+.cssload-loader:after {
+	z-index: 1;
+	animation: cssload-gogoloader 2.3s infinite 1.15s;
+	-o-animation: cssload-gogoloader 2.3s infinite 1.15s;
+	-ms-animation: cssload-gogoloader 2.3s infinite 1.15s;
+	-webkit-animation: cssload-gogoloader 2.3s infinite 1.15s;
+	-moz-animation: cssload-gogoloader 2.3s infinite 1.15s;
+}
+
+.cssload-loader:before {
+	z-index: 2;
+	animation: cssload-gogoloader 2.3s infinite;
+	-o-animation: cssload-gogoloader 2.3s infinite;
+	-ms-animation: cssload-gogoloader 2.3s infinite;
+	-webkit-animation: cssload-gogoloader 2.3s infinite;
+	-moz-animation: cssload-gogoloader 2.3s infinite;
+}
+
+@keyframes cssload-gogoloader {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 0;
+	}
+}
+
+@-o-keyframes cssload-gogoloader {
+	0% {
+		-o-transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		-o-transform: scale(1);
+		opacity: 0;
+	}
+}
+
+@-ms-keyframes cssload-gogoloader {
+	0% {
+		-ms-transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		-ms-transform: scale(1);
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes cssload-gogoloader {
+	0% {
+		-webkit-transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: scale(1);
+		opacity: 0;
+	}
+}
+
+@-moz-keyframes cssload-gogoloader {
+	0% {
+		-moz-transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		-moz-transform: scale(1);
+		opacity: 0;
+	}
+}
