@@ -14,6 +14,9 @@ const Header = () => {
 					<Link to="/check">verify</Link>
 				</li>
 				<li>
+					<Link to="/video">video</Link>
+				</li>
+				<li>
 					<Link to="/photo">signUp</Link>
 				</li>
 			</ul>

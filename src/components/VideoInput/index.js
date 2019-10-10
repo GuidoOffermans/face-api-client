@@ -13,27 +13,40 @@ const HEIGHT = 420;
 const inputSize = 160;
 
 const VideoInput = (props) => {
+	// console.log('begin props', props.users);
 	const [ facingMode, setFacingMode ] = useState('');
 	const [ detections, setDetections ] = useState(null);
 	const [ descriptors, setDescriptors ] = useState(null);
-	// const [ faceMatcher, setFaceMatcher ] = useState(null);
+	const [ faceMatcher, setFaceMatcher ] = useState(null);
 	const [ match, setMatch ] = useState(null);
 	const webcam = React.useRef(null);
 
 	useEffect(() => {
+		// console.log('start');
 		start();
 	}, []);
 
-	const getAllFaces = async () => {
-		await props.getAllUsers();
-	};
+	useEffect(() => {
+		props.getAllUsers();
+	}, []);
+
+	// const getAllFaces = async () => {
+	// 	await props.getAllUsers();
+	// };
 
 	const start = async () => {
 		await loadModels();
-		await getAllFaces();
 		setInputDevice();
-		console.log('users', props.users);
 	};
+
+	if (props.users && faceMatcher === null) {
+		const set = async () => {
+			setFaceMatcher(await createMatcher(props.users));
+		};
+		set();
+		console.log('setface xx', faceMatcher);
+		// getUsers();
+	}
 
 	const setInputDevice = () => {
 		navigator.mediaDevices
@@ -47,52 +60,43 @@ const VideoInput = (props) => {
 				} else {
 					await setFacingMode({ exact: 'environment' });
 				}
-
 				startCapture();
 			});
 	};
 
 	const startCapture = () => {
-		// setInterval(() => {
-		capture();
-		// }, 2000);
+		setInterval(() => {
+			capture();
+		}, 1000);
 	};
 
-	let faceMatcher = null;
+	// let faceMatcher = null;
 	const capture = async () => {
-		console.log('props', props);
-
 		if (webcam.current) {
-			console.log('capturing');
-			// await getFullFaceDescription(
-			// 	webcam.current.getScreenshot(),
-			// 	inputSize
-			// ).then(async (fullDesc) => {
-			// 	if (!!fullDesc) {
-			// 		setDetections(fullDesc.map((fd) => fd.detection));
-			// 		setDescriptors(
-			// 			fullDesc.map((fd) => fd.descriptor)
-			// 		);
-			// 	}
-			// 	console.log(props.users);
-			// 	if (props.users) {
-			// 		const faceMatcher = await createMatcher(
-			// 			props.users
-			// 		);
-			// 		console.log('setface xx', faceMatcher);
-			// 		// getUsers();
-			// 	}
+			await getFullFaceDescription(
+				webcam.current.getScreenshot(),
+				inputSize
+			).then(async (fullDesc) => {
+				if (!!fullDesc) {
+					setDetections(fullDesc.map((fd) => fd.detection));
+					setDescriptors(
+						fullDesc.map((fd) => fd.descriptor)
+					);
+				}
+				console.log('users -<>', props.users);
 
-			// console.log('face---', faceMatcher);
-			// if (descriptors && faceMatcher) {
-			// 	console.log('matching');
-			// 	let match = await descriptors.map((descriptor) =>
-			// 		faceMatcher.findBestMatch(descriptor)
-			// 	);
-			// 	console.log('match', match);
-			// 	setMatch(match);
-			// }
-			// 		});
+				console.log('setface ----', faceMatcher);
+
+				// console.log('face---', faceMatcher);
+				// if (descriptors && faceMatcher) {
+				// 	console.log('matching');
+				// 	let match = await descriptors.map((descriptor) =>
+				// 		faceMatcher.findBestMatch(descriptor)
+				// 	);
+				// 	console.log('match', match);
+				// 	// setMatch(match);
+				// }
+			});
 		}
 	};
 
