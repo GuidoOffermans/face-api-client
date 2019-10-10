@@ -67,7 +67,7 @@ const VideoInput = (props) => {
 	const startCapture = () => {
 		setInterval(() => {
 			capture();
-		}, 1000);
+		}, 800);
 	};
 
 	// let faceMatcher = null;
@@ -127,7 +127,7 @@ const VideoInput = (props) => {
 				<div key={i}>
 					<div
 						style={{
-							borderRadius: '1rem 1rem 0 0',
+							borderRadius: '1rem 1rem 1rem 1rem',
 							position: 'absolute',
 							border: 'solid',
 							borderColor: '#11e483',
